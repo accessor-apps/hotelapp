@@ -1,0 +1,105 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.ListView?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.BorderPane?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.StackPane?>
+<?import javafx.scene.layout.VBox?>
+
+<BorderPane fx:id="root" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="600.0" prefWidth="900.0" styleClass="root" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="accessor.hotel.fxml.MainController">
+   <left>
+      <VBox alignment="TOP_CENTER" prefHeight="600.0" prefWidth="250.0" spacing="10.0" styleClass="menu-background" BorderPane.alignment="CENTER">
+         <children>
+            <ImageView fitHeight="54.0" fitWidth="160.0" pickOnBounds="true" preserveRatio="true" VBox.vgrow="ALWAYS">
+               <image>
+                  <Image url="@../res/sarbon.png" />
+               </image>
+               <VBox.margin>
+                  <Insets top="10.0" />
+               </VBox.margin>
+            </ImageView>
+            <ListView fx:id="menuList" prefHeight="426.0" prefWidth="250.0" styleClass="menu-list" VBox.vgrow="ALWAYS">
+               <VBox.margin>
+                  <Insets left="20.0" right="20.0" top="10.0" />
+               </VBox.margin>
+            </ListView>
+            <StackPane alignment="TOP_LEFT">
+               <children>
+                  <ImageView fitHeight="54.0" fitWidth="100.0" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@../res/acclogo.png" />
+                     </image>
+                  </ImageView>
+               </children>
+               <padding>
+                  <Insets left="10.0" />
+               </padding>
+            </StackPane>
+         </children>
+         <BorderPane.margin>
+            <Insets />
+         </BorderPane.margin>
+         <padding>
+            <Insets bottom="10.0" top="10.0" />
+         </padding>
+      </VBox>
+   </left>
+   <center>
+      <VBox prefHeight="200.0" prefWidth="100.0" spacing="10.0" BorderPane.alignment="CENTER">
+         <BorderPane.margin>
+            <Insets />
+         </BorderPane.margin>
+         <children>
+            <HBox alignment="TOP_RIGHT" styleClass="menu-background">
+               <children>
+                  <HBox alignment="CENTER_LEFT" spacing="10.0" HBox.hgrow="ALWAYS">
+                     <children>
+                        <ImageView fitHeight="30.0" fitWidth="29.0" pickOnBounds="true" preserveRatio="true">
+                           <image>
+                              <Image url="@../res/minicon.png" />
+                           </image>
+                        </ImageView>
+                        <Label style="-fx-font-size: 12;" styleClass="text-label" text="Accessor Hotel 2019" />
+                     </children>
+                     <padding>
+                        <Insets left="10.0" />
+                     </padding>
+                  </HBox>
+                  <Button fx:id="minimizeButton" mnemonicParsing="false" prefHeight="30.0" prefWidth="34.0" styleClass="decoration-button-minimize" />
+                  <Button fx:id="closeButton" mnemonicParsing="false" prefHeight="30.0" prefWidth="34.0" styleClass="decoration-button-close" />
+               </children>
+            </HBox>
+            <StackPane fx:id="content" VBox.vgrow="ALWAYS">
+               <VBox.margin>
+                  <Insets />
+               </VBox.margin>
+            </StackPane>
+            <HBox fx:id="stateTextContainer" alignment="CENTER_RIGHT" style="-fx-background-color: #508ce1;">
+               <children>
+                  <Label fx:id="currentStateLabel" style="-fx-text-fill: white;" text="Current state">
+                     <padding>
+                        <Insets left="5.0" right="10.0" />
+                     </padding>
+                  </Label>
+                  <ImageView fitHeight="14.0" fitWidth="14.0" opacity="0.68" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@../res/info.png" />
+                     </image>
+                  </ImageView>
+               </children>
+               <VBox.margin>
+                  <Insets />
+               </VBox.margin>
+               <padding>
+                  <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
+               </padding>
+            </HBox>
+         </children>
+      </VBox>
+   </center>
+</BorderPane>
