@@ -92,17 +92,9 @@
                <children>
                   <HBox alignment="CENTER_RIGHT" spacing="10.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.topAnchor="0.0">
                      <children>
-                        <Button layoutX="795.0" layoutY="10.0" mnemonicParsing="false" onAction="#editDataAction" text="&lt;" />
-                        <StackPane>
-                           <children>
-                              <Label fx:id="currentPageLabel" styleClass="page-count-label" text="1..10">
-                                 <font>
-                                    <Font size="22.0" />
-                                 </font>
-                              </Label>
-                           </children>
-                        </StackPane>
-                        <Button layoutX="10.0" layoutY="10.0" mnemonicParsing="false" onAction="#editDataAction" text="&gt;" />
+                        <Button layoutX="795.0" layoutY="10.0" mnemonicParsing="false" onAction="#prevPageAction" text="&lt;" />
+                        <StackPane />
+                        <Button layoutX="10.0" layoutY="10.0" mnemonicParsing="false" onAction="#nextPageAction" text="&gt;" />
                      </children>
                   </HBox>
                   <HBox alignment="CENTER_RIGHT" layoutX="10.0" layoutY="10.0" spacing="10.0" AnchorPane.bottomAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">

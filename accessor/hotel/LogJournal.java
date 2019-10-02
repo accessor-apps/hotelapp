@@ -53,6 +53,7 @@ public class LogJournal {
             builder.append("     \n").append(stackTraceElement.toString());
         }
         error(builder.toString());
+        throw new RuntimeException(e);
     }
     
     public static void error(String msg)  {

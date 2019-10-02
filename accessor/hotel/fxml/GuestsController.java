@@ -46,8 +46,6 @@ public class GuestsController implements Controller {
     private Label currentGuestCount;
     @FXML
     private Label arriveGuestCount;
-    @FXML
-    private Label currentPageLabel;
 
     private int maxItems = 0;
     private int currentPage = 0;
@@ -79,6 +77,12 @@ public class GuestsController implements Controller {
 	});
     }    
 
+    private void updatePageCount() throws SQLException {
+        int count = DatabaseHelper.instance.getGuestTotalCount();
+        int pages = count / maxItems;
+        currentPage = pages - 1;
+    }
+    
     @Override
     public void update() {
         try {
@@ -87,7 +91,6 @@ public class GuestsController implements Controller {
             totalGuestCount.setText(Integer.toString(guestsCount.totalCount));
             currentGuestCount.setText(Integer.toString(guestsCount.currentCount));
             arriveGuestCount.setText(Integer.toString(guestsCount.comingCount));
-            currentPageLabel.setText((currentPage + 1) + " / " + (pageCount+1));
         } catch (SQLException ex) {
             LogJournal.error(ex);
         }

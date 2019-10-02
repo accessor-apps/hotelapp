@@ -51,8 +51,6 @@ public class MainApp extends Application {
         p.getStylesheets().add("/accessor/hotel/res/theme.css");
         Rectangle2D screen = Screen.getPrimary().getVisualBounds();
         primaryStage.setScene(new Scene(p, screen.getWidth(), screen.getHeight(), Color.BLACK));
-        
-        
         Stage splashScreen = new Stage(StageStyle.TRANSPARENT);
         splashScreen.setAlwaysOnTop(true);
         splashScreen.getIcons().add(new Image("/accessor/hotel/res/icon.png"));

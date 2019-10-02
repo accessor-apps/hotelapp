@@ -54,17 +54,31 @@ public class DatabaseHelper {
     
     public List<Guest> getGuests(int currentPage, int maxItems) throws SQLException {
         final String query = "SELECT id, name, phone, arrival, departure, room_id, room_number, country, service, service_name, current_price, note, status"
-                + " FROM Guests INNER JOIN Services ON (service == service_id) INNER JOIN Rooms ON (room == room_id) "
+                + " FROM Guests JOIN Services ON (service == service_id) JOIN Rooms ON (room == room_id) "
                 + "where hidden = 0 ORDER BY id DESC limit ?, ?";
         guests.clear();
 
+        System.out.println(query);
+        System.out.println("currentPage = " + currentPage);
+        System.out.println("maxItems = " + maxItems);
+        
         try (PreparedStatement statement = connection.getConnection().prepareStatement(query)) {
             statement.setInt(1, currentPage * maxItems);
             statement.setInt(2, maxItems);
             
-            ResultSet result = statement.executeQuery();
-            
-            while(result.next()) {
+            int i = 0;
+            try (ResultSet result = statement.executeQuery()) {
+                while(result.next()) {
+                    i++;
+                    guests.add(readGuest(result));
+                }
+            }
+            System.out.println("guest count: " + i);
+        }
+        return guests;
+    } 
+    
+    private Guest readGuest(ResultSet result) throws SQLException {
                 Guest guest = new Guest();
                 guest.id = result.getInt(1);
                 guest.name = result.getString(2);
@@ -89,21 +103,28 @@ public class DatabaseHelper {
                     case 2: guest.status = "Убыл"; break;
                     default: LogJournal.error("Unknown status of guest: " + status);
                 }
-                
-                guests.add(guest);
-            }
-            result.close();
-        }
-        return guests;
-    } 
-    
-    public Guest getGuestById(int id) {
-        for (Guest guest : guests) {
-            if (guest.id == id) {
                 return guest;
+    }
+    
+    public Guest getGuestById(int id) throws SQLException {
+        Guest guest = new Guest();
+        final String query = "select id, name, arrival, departure, country, current_price from Guests where id = ?";
+        try (PreparedStatement statement = connection.getConnection().prepareStatement(query)) {
+            statement.setInt(1, id);
+            ResultSet result = statement.executeQuery();
+            guest.id = result.getInt(1);
+            guest.name = result.getString(2);
+            guest.arrivalDate = Util.datetimeFromString(result.getString(3));
+            guest.departureDate = Util.datetimeFromString(result.getString(4));
+            guest.from = result.getString(5);
+            guest.price = result.getDouble(6);
+            int days = Util.differenceOfDays(guest.arrivalDate, guest.departureDate);
+            if (days == 0) {
+                days = 1;
             }
+            guest.amount = new DecimalFormat("#,###").format(guest.price * days) + "/" + days;
         }
-        return null;
+        return guest;
     }
     
     public void addGuest(Guest guest) throws SQLException {
