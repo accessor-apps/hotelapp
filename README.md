@@ -1,4 +1,4 @@
-# hotelapp
+# Hotel Manager
 Приложение Hotel Manager
 
 Делаю для друга Дони Амангалдиева
